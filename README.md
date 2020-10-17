@@ -23,4 +23,8 @@
 ### Lession 10
 
 - tsc --init
-- Reference: https://www.typescriptlang.org/tsconfig
+
+### Reference
+
+- http://expressjs.com/en/resources/middleware/morgan.html
+- https://www.typescriptlang.org/tsconfig

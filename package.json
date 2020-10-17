@@ -9,13 +9,21 @@
     "server": "nodemon src/server.ts"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.9"
+    "helmet": "^4.1.1",
+    "hpp": "^0.2.3",
+    "mongoose": "^5.10.9",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.8",
     "@types/express": "^4.17.8",
+    "@types/hpp": "^0.2.1",
     "@types/mongoose": "^5.7.36",
+    "@types/morgan": "^1.9.1",
     "cross-env": "^7.0.2",
     "nodemon": "^2.0.5",
     "ts-node": "^9.0.0",
