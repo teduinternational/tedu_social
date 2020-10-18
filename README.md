@@ -16,9 +16,10 @@
 - git init
 - git commit -m "Initial commit"
 - git add \*
-- git config --global user.name "Toan Bach"
+- git config --global user.name "Your Name"
+- git config --global user.email "Your Email"
 - git remote add origin https://github.com/teduinternational/tedu_social.git
-- it push -u origin master
+- git push -u origin master
 
 ### Lession 10
 
