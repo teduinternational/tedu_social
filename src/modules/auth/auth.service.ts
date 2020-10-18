@@ -30,6 +30,14 @@ class AuthService {
     return this.createToken(user);
   }
 
+  public async getCurrentLoginUser(userId: string): Promise<IUser> {
+    const user = await this.userSchema.findById(userId);
+    if (!user) {
+      throw new HttpException(404, `User is not exists`);
+    }
+    return user;
+  }
+
   private createToken(user: IUser): TokenData {
     const dataInToken: DataStoredInToken = { id: user._id };
     const secret: string = process.env.JWT_TOKEN_SECRET!;
