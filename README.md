@@ -31,3 +31,4 @@
 - https://www.typescriptlang.org/tsconfig
 - https://github.com/winstonjs/winston
 - https://www.npmjs.com/package/bcryptjs
+- https://www.npmjs.com/package/class-validator
