@@ -21,6 +21,7 @@ class App {
     this.connectToDatabase();
     this.initializeMiddleware();
     this.initializeRoutes(routes);
+    this.initializeErrorMiddleware();
   }
 
   public listen() {
@@ -47,6 +48,8 @@ class App {
     }
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+  }
+  private initializeErrorMiddleware() {
     this.app.use(errorMiddleware);
   }
 
