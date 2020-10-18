@@ -1,5 +1,5 @@
 import IndexController from './index.controller';
-import { Route } from 'core/interfaces';
+import { Route } from '@core/interfaces';
 import { Router } from 'express';
 
 export default class IndexRoute implements Route {

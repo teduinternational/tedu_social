@@ -1,5 +1,5 @@
-import { Logger } from './core/utils';
-import { Route } from './core/interfaces';
+import { Logger } from '@core/utils';
+import { Route } from '@core/interfaces';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
