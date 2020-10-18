@@ -1,6 +1,7 @@
 import { Logger } from '@core/utils';
 import { Route } from '@core/interfaces';
 import cors from 'cors';
+import { errorMiddleware } from '@core/middleware';
 import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
@@ -44,6 +45,7 @@ class App {
       this.app.use(morgan('dev'));
       this.app.use(cors({ origin: true, credentials: true }));
     }
+    this.app.use(errorMiddleware);
   }
 
   private connectToDatabase() {
