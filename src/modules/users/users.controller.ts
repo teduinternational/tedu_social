@@ -71,4 +71,17 @@ export default class UsersController {
       next(error);
     }
   };
+
+  public deleteUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const result = await this.userService.deleteUser(req.params.id);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
