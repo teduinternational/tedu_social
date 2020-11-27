@@ -50,6 +50,15 @@ class UserService {
     if (!user) {
       throw new HttpException(400, `User id is not exist`);
     }
+    const checkEmail = await this.userSchema
+      .find({
+        $and: [{ email: { $eq: model.email } }, { _id: { $ne: userId } }],
+      })
+      .exec();
+    if (checkEmail.length !== 0) {
+      throw new HttpException(400, 'Your email has been used by another user.');
+    }
+    console.log(checkEmail);
     let avatar = user.avatar;
     if (user.email === model.email) {
       throw new HttpException(400, 'You must using the difference email');
@@ -66,18 +75,26 @@ class UserService {
       const salt = await bcryptjs.genSalt(10);
       const hashedPassword = await bcryptjs.hash(model.password, salt);
       updateUserById = await this.userSchema
-        .findByIdAndUpdate(userId, {
-          ...model,
-          avatar: avatar,
-          password: hashedPassword,
-        })
+        .findByIdAndUpdate(
+          userId,
+          {
+            ...model,
+            avatar: avatar,
+            password: hashedPassword,
+          },
+          { new: true }
+        )
         .exec();
     } else {
       updateUserById = await this.userSchema
-        .findByIdAndUpdate(userId, {
-          ...model,
-          avatar: avatar,
-        })
+        .findByIdAndUpdate(
+          userId,
+          {
+            ...model,
+            avatar: avatar,
+          },
+          { new: true }
+        )
         .exec();
     }
 
