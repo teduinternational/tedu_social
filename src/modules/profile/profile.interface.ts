@@ -33,7 +33,7 @@ export interface IEducation {
   current: boolean;
   description: string;
 }
-export interface ISocial {
+export interface ISocial extends Record<string, string> {
   youtube: string;
   twitter: string;
   linkedin: string;
