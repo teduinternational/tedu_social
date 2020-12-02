@@ -1,5 +1,6 @@
 import { authMiddleware, validationMiddleware } from '@core/middleware';
 
+import AddExperienceDto from './dtos/add_experience.dto';
 import CreateProfileDto from './dtos/create_profile.dto';
 import ProfileController from './profile.controller';
 import { Profiler } from 'winston';
@@ -36,6 +37,18 @@ class ProfileRoute implements Route {
       `${this.path}/:id`,
       authMiddleware,
       this.profileController.deleteProfile
+    );
+
+    this.router.put(
+      `${this.path}/experience`,
+      authMiddleware,
+      validationMiddleware(AddExperienceDto),
+      this.profileController.createExperience
+    );
+    this.router.delete(
+      `${this.path}/experience/:exp_id`,
+      authMiddleware,
+      this.profileController.deleteExperience
     );
   }
 }

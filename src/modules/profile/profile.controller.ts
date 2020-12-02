@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
+import AddExperienceDto from './dtos/add_experience.dto';
 import CreateProfileDto from './dtos/create_profile.dto';
 import { IProfile } from './profile.interface';
 import { IUser } from '@modules/users';
@@ -81,6 +82,42 @@ class ProfileController {
     try {
       await this.profileService.deleteProfile(userId);
       res.status(200);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public createExperience = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const data: AddExperienceDto = req.body;
+    const userId = req.user.id;
+    try {
+      const createUserData: IProfile = await this.profileService.addExperience(
+        userId,
+        data
+      );
+      res.status(201).json(createUserData);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public deleteExperience = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const expId: string = req.params.exp_id;
+
+    try {
+      const profile = await this.profileService.deleteExperience(
+        req.user.id,
+        expId
+      );
+      res.status(200).json(profile);
     } catch (error) {
       next(error);
     }
