@@ -9,7 +9,7 @@ export default class PostsRoute implements Route {
   public path = '/api/v1/posts';
   public router = Router();
 
-  public usersController = new PostsController();
+  public postController = new PostsController();
 
   constructor() {
     this.initializeRoutes();
@@ -20,14 +20,21 @@ export default class PostsRoute implements Route {
       this.path,
       authMiddleware,
       validationMiddleware(CreatePostDto, true),
-      this.usersController.createPost
+      this.postController.createPost
     );
 
     this.router.put(
       this.path + '/:id',
       authMiddleware,
       validationMiddleware(CreatePostDto, true),
-      this.usersController.updatePost
+      this.postController.updatePost
+    );
+
+    this.router.get(this.path, this.postController.getAllPosts);
+    this.router.get(this.path + '/:id', this.postController.getPostById);
+    this.router.get(
+      this.path + '/paging/:page',
+      this.postController.getAllPaging
     );
   }
 }
