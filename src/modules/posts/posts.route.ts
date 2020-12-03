@@ -36,5 +36,11 @@ export default class PostsRoute implements Route {
       this.path + '/paging/:page',
       this.postController.getAllPaging
     );
+
+    this.router.delete(
+      this.path + '/:id',
+      authMiddleware,
+      this.postController.deletePost
+    );
   }
 }

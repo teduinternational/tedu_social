@@ -78,4 +78,16 @@ export default class PostService {
       items: users,
     } as IPagination<IPost>;
   }
+
+  public async deletePost(userId: string, postId: string): Promise<IPost> {
+    const post = await PostSchema.findById(postId).exec();
+    if (!post) throw new HttpException(400, 'Post not found');
+
+    if (post.user.toString() !== userId)
+      throw new HttpException(400, 'User is not authorized');
+
+    await post.remove();
+
+    return post;
+  }
 }
