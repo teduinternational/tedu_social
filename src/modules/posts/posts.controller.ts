@@ -97,4 +97,30 @@ export default class PostsController {
       next(error);
     }
   };
+
+  public likePost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const postId = req.params.id;
+
+      const likes = await this.postService.likePost(req.user.id, postId);
+      res.status(200).json(likes);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public unlikePost = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const postId = req.params.id;
+
+      const likes = await this.postService.unlikePost(req.user.id, postId);
+      res.status(200).json(likes);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
