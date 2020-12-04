@@ -123,4 +123,42 @@ export default class PostsController {
       next(error);
     }
   };
+
+  public addComment = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const postId = req.params.id;
+
+      const result = await this.postService.addComment({
+        text: req.body.text,
+        userId: req.user.id,
+        postId: postId,
+      });
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public removeComment = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const postId = req.params.id;
+
+      const result = await this.postService.removeComment(
+        req.params.comment_id,
+        postId,
+        req.user.id
+      );
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
