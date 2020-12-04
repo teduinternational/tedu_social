@@ -6,10 +6,15 @@ export interface IPost {
   avatar: string;
   likes: ILike[];
   comments: IComment[];
+  shares: IShare[];
   date: Date;
 }
 
 export interface ILike {
+  user: string;
+}
+
+export interface IShare {
   user: string;
 }
 

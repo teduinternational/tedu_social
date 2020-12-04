@@ -164,4 +164,39 @@ export default class PostService {
     await post.save();
     return post.comments;
   }
+
+  public async sharePost(userId: string, postId: string): Promise<ILike[]> {
+    const post = await PostSchema.findById(postId).exec();
+    if (!post) throw new HttpException(400, 'Post not found');
+
+    if (
+      post.shares &&
+      post.shares.some((like: ILike) => like.user.toString() === userId)
+    ) {
+      throw new HttpException(400, 'Post already liked');
+    }
+    if (!post.shares) post.shares = [];
+
+    post.shares.unshift({ user: userId });
+
+    await post.save();
+    return post.shares;
+  }
+
+  public async removeShare(userId: string, postId: string): Promise<ILike[]> {
+    const post = await PostSchema.findById(postId).exec();
+    if (!post) throw new HttpException(400, 'Post not found');
+
+    if (
+      post.shares &&
+      !post.shares.some((share: ILike) => share.user.toString() === userId)
+    ) {
+      throw new HttpException(400, 'Post has not yet been shared');
+    }
+    if (!post.shares) post.shares = [];
+    post.shares = post.shares.filter(({ user }) => user.toString() !== userId);
+
+    await post.save();
+    return post.shares;
+  }
 }

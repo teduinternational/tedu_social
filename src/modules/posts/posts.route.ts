@@ -44,13 +44,13 @@ export default class PostsRoute implements Route {
       this.postController.deletePost
     );
 
-    this.router.put(
+    this.router.post(
       this.path + '/like/:id',
       authMiddleware,
       this.postController.likePost
     );
-    this.router.put(
-      this.path + '/unlike/:id',
+    this.router.delete(
+      this.path + '/like/:id',
       authMiddleware,
       this.postController.unlikePost
     );
@@ -65,6 +65,17 @@ export default class PostsRoute implements Route {
       this.path + '/comments/:id/:comment_id',
       authMiddleware,
       this.postController.removeComment
+    );
+
+    this.router.post(
+      this.path + '/shares/:id',
+      authMiddleware,
+      this.postController.sharePost
+    );
+    this.router.delete(
+      this.path + '/shares/:id',
+      authMiddleware,
+      this.postController.removeSharePost
     );
   }
 }
