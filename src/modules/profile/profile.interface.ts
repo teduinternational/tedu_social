@@ -10,9 +10,14 @@ export interface IProfile {
   experience: IExperience[];
   education: IEducation[];
   social: ISocial;
+  followings: IFollower[];
+  followers: IFollower[];
   date: Date;
 }
 
+export interface IFollower {
+  user: string;
+}
 export interface IExperience {
   _id: string;
   title: string;
