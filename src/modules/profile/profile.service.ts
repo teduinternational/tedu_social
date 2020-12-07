@@ -222,9 +222,9 @@ class ProfileService {
 
     if (
       toProfile.followers &&
-      toProfile.followers.some(
-        (follower: IFollower) => follower.user.toString() !== fromUserId
-      )
+      toProfile.followers.findIndex(
+        (follower: IFollower) => follower.user.toString() === fromUserId
+      ) !== -1
     ) {
       throw new HttpException(400, 'You has not being followed this user');
     }
@@ -314,9 +314,9 @@ class ProfileService {
 
     if (
       toProfile.friends &&
-      toProfile.friends.some(
-        (follower: IFollower) => follower.user.toString() !== fromUserId
-      )
+      toProfile.friends.findIndex(
+        (follower: IFollower) => follower.user.toString() === fromUserId
+      ) === -1
     ) {
       throw new HttpException(400, 'You has not yet be friend this user');
     }

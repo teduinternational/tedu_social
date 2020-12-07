@@ -191,6 +191,37 @@ export default class GroupService {
     return group;
   }
 
+  public async removeMember(groupId: string, userId: string): Promise<IGroup> {
+    const group = await GroupSchema.findById(groupId).exec();
+    if (!group) throw new HttpException(400, 'Group id is not exist');
+
+    const user = await UserSchema.findById(userId).select('-password').exec();
+    if (!user) throw new HttpException(400, 'User id is not exist');
+
+    if (
+      group.members &&
+      group.members.findIndex(
+        (item: IMember) => item.user.toString() === userId
+      ) == -1
+    ) {
+      throw new HttpException(400, 'You has not yet been member of this group');
+    }
+
+    if (group.members.length == 1) {
+      throw new HttpException(
+        400,
+        'You are last member of this group. Cannot delete'
+      );
+    }
+
+    group.members = group.members.filter(
+      ({ user }) => user.toString() !== userId
+    );
+
+    await group.save();
+    return group;
+  }
+
   public async removeManager(groupId: string, userId: string): Promise<IGroup> {
     const group = await GroupSchema.findById(groupId).exec();
     if (!group) throw new HttpException(400, 'Group id is not exist');
@@ -200,7 +231,9 @@ export default class GroupService {
 
     if (
       group.managers &&
-      group.managers.some((item: IManager) => item.user.toString() !== userId)
+      group.members.findIndex(
+        (item: IMember) => item.user.toString() === userId
+      ) == -1
     ) {
       throw new HttpException(
         400,

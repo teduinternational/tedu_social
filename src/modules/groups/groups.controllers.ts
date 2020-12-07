@@ -132,4 +132,19 @@ export default class GroupsController {
       next(error);
     }
   };
+
+  public removeMember = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const groupId = req.params.group_id;
+      const userId = req.params.user_id;
+      const group = await this.groupService.removeMember(groupId, userId);
+      res.status(200).json(group);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
