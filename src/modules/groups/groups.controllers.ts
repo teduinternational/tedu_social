@@ -28,4 +28,33 @@ export default class GroupsController {
       next(error);
     }
   };
+
+  public updateGroup = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const model: CreateGroupDto = req.body;
+      const groupId = req.params.id;
+      const result = await this.groupService.updateGroup(groupId, model);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public deleteGroup = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const groupId = req.params.id;
+      const groups = await this.groupService.deleteGroup(groupId);
+      res.status(200).json(groups);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
