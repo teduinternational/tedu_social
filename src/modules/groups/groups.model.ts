@@ -31,12 +31,20 @@ const GroupSchema = new mongoose.Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
       },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
     },
   ],
   member_requests: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
       },
     },
   ],
