@@ -1,8 +1,9 @@
-import { IGroup, IMember } from './groups.interface';
+import { IGroup, IManager, IMember } from './groups.interface';
 
 import CreateGroupDto from './dtos/create_group.dto';
 import GroupSchema from './groups.model';
 import { HttpException } from '@core/exceptions';
+import SetManagerDto from './dtos/set_manager.dto';
 import { UserSchema } from '@modules/users';
 
 export default class GroupService {
@@ -133,6 +134,63 @@ export default class GroupService {
     );
 
     group.members.unshift({ user: userId } as IMember);
+
+    await group.save();
+    return group;
+  }
+
+  public async addManager(
+    groupId: string,
+    request: SetManagerDto
+  ): Promise<IGroup> {
+    const group = await GroupSchema.findById(groupId).exec();
+    if (!group) throw new HttpException(400, 'Group id is not exist');
+
+    const user = await UserSchema.findById(request.userId)
+      .select('-password')
+      .exec();
+    if (!user) throw new HttpException(400, 'User id is not exist');
+    if (
+      group.managers &&
+      group.managers.some(
+        (item: IManager) => item.user.toString() === request.userId
+      )
+    ) {
+      throw new HttpException(
+        400,
+        'You has already been set manger to this group'
+      );
+    }
+
+    group.managers.unshift({
+      user: request.userId,
+      role: request.role,
+    } as IManager);
+
+    await group.save();
+    return group;
+  }
+
+  public async removeManager(groupId: string, userId: string): Promise<IGroup> {
+    const group = await GroupSchema.findById(groupId).exec();
+    if (!group) throw new HttpException(400, 'Group id is not exist');
+
+    const user = await UserSchema.findById(userId).select('-password').exec();
+    if (!user) throw new HttpException(400, 'User id is not exist');
+
+    if (
+      group.managers &&
+      group.managers.some((item: IManager) => item.user.toString() !== userId)
+    ) {
+      throw new HttpException(
+        400,
+        'You has not yet been manager of this group'
+      );
+    }
+
+    group.managers = group.managers.filter(
+      ({ user }) => user.toString() !== userId
+    );
 
     await group.save();
     return group;
