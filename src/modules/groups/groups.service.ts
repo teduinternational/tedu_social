@@ -3,6 +3,7 @@ import { IGroup, IManager, IMember } from './groups.interface';
 import CreateGroupDto from './dtos/create_group.dto';
 import GroupSchema from './groups.model';
 import { HttpException } from '@core/exceptions';
+import IUser from '@modules/users/users.interface';
 import SetManagerDto from './dtos/set_manager.dto';
 import { UserSchema } from '@modules/users';
 
@@ -30,6 +31,18 @@ export default class GroupService {
   public async getAllGroup(): Promise<IGroup[]> {
     const groups = GroupSchema.find().exec();
     return groups;
+  }
+
+  public async getAllMembers(groupId: string): Promise<IUser[]> {
+    const group = await GroupSchema.findById(groupId).exec();
+    if (!group) throw new HttpException(400, 'Group id is not exist');
+
+    const userIds = group.members.map((member) => {
+      return member.user;
+    });
+
+    const users = UserSchema.find({ _id: userIds }).select('-password').exec();
+    return users;
   }
 
   public async updateGroup(
@@ -127,6 +140,13 @@ export default class GroupService {
       )
     ) {
       throw new HttpException(400, 'There is not any request of this user');
+    }
+
+    if (
+      group.members &&
+      group.members.some((item: IMember) => item.user.toString() === userId)
+    ) {
+      throw new HttpException(400, 'This user has already been in group');
     }
 
     group.member_requests = group.member_requests.filter(
