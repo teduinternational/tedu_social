@@ -2,6 +2,7 @@ import 'dotenv/config';
 
 import App from './app';
 import AuthRoute from '@modules/auth/auth.route';
+import ConversationsRoute from '@modules/conversations/conversations.route';
 import GroupsRoute from '@modules/groups/groups.route';
 import { IndexRoute } from '@modules/index';
 import PostsRoute from '@modules/posts/posts.route';
@@ -18,6 +19,7 @@ const routes = [
   new ProfileRoute(),
   new PostsRoute(),
   new GroupsRoute(),
+  new ConversationsRoute(),
 ];
 
 const app = new App(routes);
