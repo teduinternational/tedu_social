@@ -103,6 +103,46 @@ const ProfileSchema = new mongoose.Schema({
       type: String,
     },
   },
+  followings: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+    },
+  ],
+  followers: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+    },
+  ],
+  friends: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
+  friend_requests: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

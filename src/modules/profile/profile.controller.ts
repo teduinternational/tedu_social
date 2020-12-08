@@ -159,5 +159,69 @@ class ProfileController {
       next(error);
     }
   };
+
+  public follow = async (req: Request, res: Response, next: NextFunction) => {
+    const toUserId: string = req.params.id;
+    try {
+      const profile = await this.profileService.follow(req.user.id, toUserId);
+      res.status(200).json(profile);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public unFollow = async (req: Request, res: Response, next: NextFunction) => {
+    const toUserId: string = req.params.id;
+    try {
+      const profile = await this.profileService.unFollow(req.user.id, toUserId);
+      res.status(200).json(profile);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public addFriend = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const toUserId: string = req.params.id;
+    try {
+      const profile = await this.profileService.addFriend(
+        req.user.id,
+        toUserId
+      );
+      res.status(200).json(profile);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public unFriend = async (req: Request, res: Response, next: NextFunction) => {
+    const toUserId: string = req.params.id;
+    try {
+      const profile = await this.profileService.unFriend(req.user.id, toUserId);
+      res.status(200).json(profile);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public acceptFriendRequest = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const toUserId: string = req.params.id;
+    try {
+      const profile = await this.profileService.acceptFriendRequest(
+        req.user.id,
+        toUserId
+      );
+      res.status(200).json(profile);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 export default ProfileController;
