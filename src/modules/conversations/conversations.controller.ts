@@ -22,4 +22,19 @@ export default class ConversationsController {
       next(error);
     }
   };
+
+  public getMyConversation = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const result = await this.conversationService.getMyConversation(
+        req.user.id
+      );
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
