@@ -6,7 +6,7 @@ import { authMiddleware } from '@core/middleware';
 import validationMiddleware from '@core/middleware/validation.middleware';
 
 export default class UsersRoute implements Route {
-  public path = '/api/users';
+  public path = '/api/v1/users';
   public router = Router();
 
   public usersController = new UsersController();
