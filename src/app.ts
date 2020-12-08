@@ -1,5 +1,6 @@
 import { Logger } from '@core/utils';
 import { Route } from '@core/interfaces';
+import YAML from 'yamljs';
 import cors from 'cors';
 import { errorMiddleware } from '@core/middleware';
 import express from 'express';
@@ -7,6 +8,7 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import swaggerUi from 'swagger-ui-express';
 
 class App {
   public app: express.Application;
@@ -22,6 +24,7 @@ class App {
     this.initializeMiddleware();
     this.initializeRoutes(routes);
     this.initializeErrorMiddleware();
+    this.initializeSwagger();
   }
 
   public listen() {
@@ -70,6 +73,12 @@ class App {
         Logger.error(reason);
       });
     Logger.info('Database connected...');
+  }
+
+  private initializeSwagger() {
+    const swaggerDocument = YAML.load('./src/swagger.yaml');
+
+    this.app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
 }
 
