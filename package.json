@@ -8,6 +8,7 @@
   "scripts": {
     "server": "nodemon src/server.ts",
     "build": "webpack",
+    "start":"cross-env NODE_ENV=production node dist/server.js",
     "run:dev": "cross-env NODE_ENV=development nodemon dist/server.js",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix"
