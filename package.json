@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "server": "nodemon src/server.ts",
+    "build": "webpack",
+    "run:dev": "cross-env NODE_ENV=development nodemon dist/server.js",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix"
   },
@@ -48,8 +50,14 @@
     "husky": "^4.3.5",
     "nodemon": "^2.0.5",
     "prettier": "^2.2.1",
+    "ts-loader": "^8.0.11",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.0.3"
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^4.0.3",
+    "webpack": "^5.10.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-node-externals": "^2.5.2",
+    "webpack-shell-plugin": "^0.5.0"
   }
 }
