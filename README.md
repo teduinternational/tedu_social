@@ -21,6 +21,13 @@
 - git remote add origin https://github.com/teduinternational/tedu_social.git
 - git push -u origin master
 
+### ESLINT
+yarn add eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
 ### Lession 10
 
 - tsc --init
