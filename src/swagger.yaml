@@ -1,0 +1,58 @@
+swagger: '2.0'
+info:
+  description: 'TEDU Social API docs'
+  version: '1.0.0'
+  title: 'TEDU Social'
+  termOfService: 'http://tedu.com.vn'
+  contact:
+    email: 'tedu.international@gmail.com'
+  license:
+    name: 'MIT'
+    url: 'https://opensource.org/licenses/MIT'
+host: 'localhost:5000'
+basePath: '/api/v1'
+tags:
+- name: 'auth'
+  description: 'Authentication APIs'
+- name: 'Conversations'
+  description: 'Message APIs'
+- name: 'Groups'
+  description: 'Group APIs'
+- name: 'Posts'
+  description: 'Post APIs'
+- name: 'Profile'
+  description: 'Profile APIs'
+- name: 'Users'
+  description: 'User APIs'
+schemes:
+- 'http'
+paths:
+  /auth:
+    post:
+      tags:
+      - 'auth'
+      summary: 'Login API and get token'
+      description: 'Input email and password'
+      operationId: "login"
+      consumes:
+      - 'application/json'
+      produces:
+      - 'application/json'
+      parameters:
+      - in: 'body'
+        name: 'body'
+        description: 'Login for user'
+        required: true
+        schema: 
+          $ref: '#/definitions/LoginDto'
+      responses:
+        '400':
+          description: 'Invalid input'
+definitions:
+  LoginDto:
+    type: 'object'
+    properties:
+      email:
+        type: 'string'
+      password:
+        type: 'string'

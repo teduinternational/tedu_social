@@ -1,0 +1,1823 @@
+{
+	"info": {
+		"_postman_id": "3fd202b2-2c54-453a-8600-937b12979760",
+		"name": "TEDU Social",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. API check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Toan\",\n    \"last_name\": \"10\",\n    \"email\": \"ngoctoan10@gmail.com\",\n    \"password\": \"123654$\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "39. Send message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzQ0MTM2OCwiZXhwIjoxNjA3NDQ0OTY4fQ.PI_SGVVI5OY6i5alA1gjUZyCwr0gQsC0xnpdQxB8m1I",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to\": \"5f8c044654cb102bed03688d\",\n    \"text\":\"test 4\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/conversations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"conversations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "40. Get my conversations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzQ0MjY4MywiZXhwIjoxNjA3NDQ2MjgzfQ.ylPp5h2ZV7G24cOuNXouq7VC_2sVC3ZqRG9usBvrnJM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to\": \"5f8c042454cb102bed036885\",\n    \"text\":\"test 3\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/conversations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"conversations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. Create profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzE0ODE0NCwiZXhwIjoxNjA3MTQ4MjA0fQ.g2j1EjjBFb90_hkaJFA5JsRqvZaMfzFibEnURSac4zs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company\": \"TEDU\",\n    \"location\": \"ha noi\",\n    \"website\": \"tedu.com.vn\",\n    \"bio\": \"sample\",\n    \"skills\": \"sql, c#, asp.net\",\n    \"status\": \"single\",\n    \"youtube\": \"youtube.com/abc\",\n    \"twitter\": \"twitter.com/abc\",\n    \"instagram\": \"instagram.com/abc\",\n    \"linkedin\": \"linkedin.com/abc\",\n    \"facebook\": \"facebook.com/abc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "32.  Create group",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzI3MDk1MSwiZXhwIjoxNjA3Mjc0NTUxfQ.vVfYBdATR42wi0SOY9K6PGrZDHwleiF0AqGZllFhXto",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Group 1\",\n    \"code\": \"group1\",\n    \"description\": \"test desc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "34. Join group",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzM1MzcyMSwiZXhwIjoxNjA3MzU3MzIxfQ.hMJpZVo39mWxbG8QwTp4jJV8s9eQ0NzabS0EBX4x6fU"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/members/5fcd030ad2b8c907f69e51b1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"members",
+						"5fcd030ad2b8c907f69e51b1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "36. Add manager group",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzMwMjk4MCwiZXhwIjoxNjA3MzA2NTgwfQ.QzcZG0A9qsUITEhK067qZE7Y1VtdE5m4KuuxtK5nowY"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\":\"5f8c041d54cb102bed036884\",\n    \"role\":\"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/managers/5fcd030ad2b8c907f69e51b1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"managers",
+						"5fcd030ad2b8c907f69e51b1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "35. Approve group join request",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzM1MzQ2NCwiZXhwIjoxNjA3MzU3MDY0fQ.MMrPX1TDs0CvLPOTqcsDFyps7I4VHJCQTJe4rL-Km-w"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/members/5f8c042454cb102bed036885/5fcd030ad2b8c907f69e51b1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"members",
+						"5f8c042454cb102bed036885",
+						"5fcd030ad2b8c907f69e51b1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "38. Remove member",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzM1NDIxOCwiZXhwIjoxNjA3MzU3ODE4fQ.iBDSD_FMRvqjQZGmD2JLoZeG0XjaGXSLtroToJGDusU"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/members/5f8c041d54cb102bed036884/5fcd030ad2b8c907f69e51b1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"members",
+						"5f8c041d54cb102bed036884",
+						"5fcd030ad2b8c907f69e51b1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "37. Remove manager",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzMwMzA5MywiZXhwIjoxNjA3MzA2NjkzfQ.IkOjBDu6tTuVL0ObdjNjQJ-_eJqcp1i0_0jFC4wAVRI"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/managers/5fcd030ad2b8c907f69e51b1/5f8c041d54cb102bed036884",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"managers",
+						"5fcd030ad2b8c907f69e51b1",
+						"5f8c041d54cb102bed036884"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "33. Update group",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzMwMDMzOCwiZXhwIjoxNjA3MzAzOTM4fQ.Ng7EdkyjPP43kw6jvg3F9IigMT_E9Z0_ZgqktnHypWk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Group 4\",\n    \"code\": \"group4\",\n    \"description\": \"test desc 4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/5fcd030ad2b8c907f69e51b1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"5fcd030ad2b8c907f69e51b1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "17. Create new post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzAwNzIxMSwiZXhwIjoxNjA3MDA3MjcxfQ.S5ddhEY-gn7fAqYpCiHAH9l-R-ttl5Br6-RC-cnp7FM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU  5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "18. Update post",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzAwNjIxNiwiZXhwIjoxNjA3MDA2Mjc2fQ.LpPYe1z0OjLI2SwNhrjWbNhS2rWCHm9EfgVluD0PcSs"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/5fc8f790d6d9a90af27cb9b0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"5fc8f790d6d9a90af27cb9b0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "22. Like post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzA0MTk5NywiZXhwIjoxNjA3MDQyMDU3fQ.o50zmFc2ldimDI3NqFyLpuOt9ejNK7fh2puacOA0tFY"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/like/5fc8fc0d305a6a0dea2ba7ac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"like",
+						"5fc8fc0d305a6a0dea2ba7ac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "28. Follow profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzE0OTMzMSwiZXhwIjoxNjA3MTQ5MzkxfQ.UofC-aUNQGlRSBOF0P_mFUzp5oYNzoLn5S8yiznb-l4"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/following/5f8c041d54cb102bed036884",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"following",
+						"5f8c041d54cb102bed036884"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "30. Add friend",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzE1MDgwNSwiZXhwIjoxNjA3MTU0NDA1fQ.3AxybE60KKOzirvUJ-d58nWtyUu_75a9ImKKx4ZAv9Y"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/friends/5f8c041d54cb102bed036884",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"friends",
+						"5f8c041d54cb102bed036884"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "31. Accept friend request",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzE1MTU0MSwiZXhwIjoxNjA3MTU1MTQxfQ.q21LJgeq3m9JEWP3vlNSugZ1djC4RMIVfzCsI725k90"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/friends/5f8c042454cb102bed036885",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"friends",
+						"5f8c042454cb102bed036885"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "29. Unfollow profile",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzE0OTM5OSwiZXhwIjoxNjA3MTQ5NDU5fQ.cSq-FrBCYTOyxWxlffsn4RrhJvzPabNEuJlsDP--so4"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/following/5f8c041d54cb102bed036884",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"following",
+						"5f8c041d54cb102bed036884"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "26. Share a post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzA0NDIyNCwiZXhwIjoxNjA3MDQ0Mjg0fQ.4qtMX7qGD31bumxG5DN9nxxgxm84tulL8_4YAMqO7XI"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/shares/5fc8fc0d305a6a0dea2ba7ac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"shares",
+						"5fc8fc0d305a6a0dea2ba7ac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "27. Remove share a post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDI0NTRjYjEwMmJlZDAzNjg4NSIsImlhdCI6MTYwNzA0NDI1NSwiZXhwIjoxNjA3MDQ0MzE1fQ.RsVvlIflnlGUt7JvsQ2lhA-jy8Wl0u16QxD2utwAHsU"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"TEDU 12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/shares/5fc8fc0d305a6a0dea2ba7ac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"shares",
+						"5fc8fc0d305a6a0dea2ba7ac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "24. Add comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzA0MzE2NywiZXhwIjoxNjA3MDQzMjI3fQ.JDRxR-LdWNN063b98lXhVfrnkJYxVwpignu0KpKFSqg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"test comment 3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/comments/5fc8fc0d305a6a0dea2ba7ac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"comments",
+						"5fc8fc0d305a6a0dea2ba7ac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "25. Remove comment",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzA0MzQ4NSwiZXhwIjoxNjA3MDQzNTQ1fQ.MFn5pbKXOtUdNE4zmGJIYS_HlQ86YwxlHSclTSbG5Jo"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/comments/5fc8fc0d305a6a0dea2ba7ac/5fc98868c60e0b09013da2e0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"comments",
+						"5fc8fc0d305a6a0dea2ba7ac",
+						"5fc98868c60e0b09013da2e0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "23. unlike post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzA0MjA5NSwiZXhwIjoxNjA3MDQyMTU1fQ.ZK-cTYjB5b9eU-K8NNTiY6NEaWVQg-eU-HkhWBhdGo0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/unlike/5fc8fc0d305a6a0dea2ba7ac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"unlike",
+						"5fc8fc0d305a6a0dea2ba7ac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Update user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwODU2MCwiZXhwIjoxNjAzMDA4NjIwfQ.cnlkm6QcKlbd7TekxLTY3lGJbCFEyyVqHZYdTZ8c318",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Toan test\",\n    \"last_name\": \"Bach test\",\n    \"email\": \"ngoctoan89@gmail.com\",\n    \"password\": \"123654$\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/5f8c042454cb102bed036885",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"5f8c042454cb102bed036885"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13. Add experience",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjg2OTg1MSwiZXhwIjoxNjA2ODY5OTExfQ.ph4XkPbjPrJZzPE3O9WRAk9jsxBb1On3lTo5av1itEE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Senior .NET Developer\",\n    \"company\": \"TEDU\",\n    \"location\": \"Ha Noi\",\n    \"from\": \"2020/02/01\",\n    \"to\": \"2020/12/01\",\n    \"current\": true,\n    \"description\": \"Build a new CRM with ASP.NET Core\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/experience",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"experience"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "15. Add education",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjg3MDcxMSwiZXhwIjoxNjA2ODcwNzcxfQ.VUj_8_5_sbtuCbaoAj7oDnUaxRK20HEaxHtE-06KQnw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"school\": \"Standford\",\n    \"degree\": \"PhD\",\n    \"fieldofstudy\": \"Data Sience\",\n    \"from\": \"2021/02/01\",\n    \"to\": \"2023/12/01\",\n    \"current\": true,\n    \"description\": \"Learn Big Data\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/education",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"education"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "14. Delete expererience",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjg2OTk3OSwiZXhwIjoxNjA2ODcwMDM5fQ.jDo0XTi2jO5m5JUQvfPnRx-4UVQoViotERtYFyceZSE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Senior .NET Developer\",\n    \"company\": \"TEDU\",\n    \"location\": \"Ha Noi\",\n    \"from\": \"2020/02/01\",\n    \"to\": \"2020/12/01\",\n    \"current\": true,\n    \"description\": \"Build a new CRM with ASP.NET Core\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/experience/5fc6e36b291d8a064968b952",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"experience",
+						"5fc6e36b291d8a064968b952"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "34. Delete group",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzMwMDMzOCwiZXhwIjoxNjA3MzAzOTM4fQ.Ng7EdkyjPP43kw6jvg3F9IigMT_E9Z0_ZgqktnHypWk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Senior .NET Developer\",\n    \"company\": \"TEDU\",\n    \"location\": \"Ha Noi\",\n    \"from\": \"2020/02/01\",\n    \"to\": \"2020/12/01\",\n    \"current\": true,\n    \"description\": \"Build a new CRM with ASP.NET Core\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/5fcd750330edea054ce7b41b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"5fcd750330edea054ce7b41b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "16. Delete education",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjg3MDc1OSwiZXhwIjoxNjA2ODcwODE5fQ.a0zhH7ow7Bh4p-n3X6HurSwV_JflSdDOqeVIH-BAgoo"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Senior .NET Developer\",\n    \"company\": \"TEDU\",\n    \"location\": \"Ha Noi\",\n    \"from\": \"2020/02/01\",\n    \"to\": \"2020/12/01\",\n    \"current\": true,\n    \"description\": \"Build a new CRM with ASP.NET Core\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/education/5fc6e67840089c080e7e0e1f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"education",
+						"5fc6e67840089c080e7e0e1f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"ngoctoan89@gmail.com\",\n    \"password\": \"123654$\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Get current User login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwODM5OCwiZXhwIjoxNjAzMDA4NDU4fQ.z0WJR7C6l9E-PU0CI621abgxANu0D0dTr5LnPLj6wYI"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Get current profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjY5ODQ3NiwiZXhwIjoxNjA2Njk4NTM2fQ.C1buqro3Yfsec_5_QQWLB7vcIulC4_S4Bb9PMpwM4uQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12. Get profile by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjY5ODQ3NiwiZXhwIjoxNjA2Njk4NTM2fQ.C1buqro3Yfsec_5_QQWLB7vcIulC4_S4Bb9PMpwM4uQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/user/5f8c041d54cb102bed036884",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						"user",
+						"5f8c041d54cb102bed036884"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11. Get all profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjY5ODQ3NiwiZXhwIjoxNjA2Njk4NTM2fQ.C1buqro3Yfsec_5_QQWLB7vcIulC4_S4Bb9PMpwM4uQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/profile/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "37. Get all members",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNjY5ODQ3NiwiZXhwIjoxNjA2Njk4NTM2fQ.C1buqro3Yfsec_5_QQWLB7vcIulC4_S4Bb9PMpwM4uQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups/members/5fcd030ad2b8c907f69e51b1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups",
+						"members",
+						"5fcd030ad2b8c907f69e51b1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Get user by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwNjIwMCwiZXhwIjoxNjAzMDA2MjYwfQ.wpoRVhomyrFmwR0MLjRqTa1lQiDs4oJpyICxFX3kv1I"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/5f8bc8067f2541187c722d94",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"5f8bc8067f2541187c722d94"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "20. Get post by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwNjIwMCwiZXhwIjoxNjAzMDA2MjYwfQ.wpoRVhomyrFmwR0MLjRqTa1lQiDs4oJpyICxFX3kv1I"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/5fc8fbff305a6a0dea2ba7a9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"5fc8fbff305a6a0dea2ba7a9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Get all user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwNjIwMCwiZXhwIjoxNjAzMDA2MjYwfQ.wpoRVhomyrFmwR0MLjRqTa1lQiDs4oJpyICxFX3kv1I"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Get all user paging",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwNjIwMCwiZXhwIjoxNjAzMDA2MjYwfQ.wpoRVhomyrFmwR0MLjRqTa1lQiDs4oJpyICxFX3kv1I"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/paging/1?keyword=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"paging",
+						"1"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "21. Get post paging",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwNjIwMCwiZXhwIjoxNjAzMDA2MjYwfQ.wpoRVhomyrFmwR0MLjRqTa1lQiDs4oJpyICxFX3kv1I"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/paging/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"paging",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19. Get all posts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwNjIwMCwiZXhwIjoxNjAzMDA2MjYwfQ.wpoRVhomyrFmwR0MLjRqTa1lQiDs4oJpyICxFX3kv1I"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "33. Get all groups",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGJjODA2N2YyNTQxMTg3YzcyMmQ5NCIsImlhdCI6MTYwMzAwNjIwMCwiZXhwIjoxNjAzMDA2MjYwfQ.wpoRVhomyrFmwR0MLjRqTa1lQiDs4oJpyICxFX3kv1I"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/groups",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. Delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwMzE1NzI0NywiZXhwIjoxNjAzMTU3MzA3fQ.hfm9zEfxMAGdbHgGNAczw6Lana4cOcDa6W-6A2JABGg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/5f8bc8067f2541187c722d94",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"5f8bc8067f2541187c722d94"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "22. Delete post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMwNDFkNTRjYjEwMmJlZDAzNjg4NCIsImlhdCI6MTYwNzAwNzkyMywiZXhwIjoxNjA3MDA3OTgzfQ.GhqnfVVpwfVso3w3pjYUsrHeIYfX5O0u1LckF2la0Ak"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/posts/5fc8f790d6d9a90af27cb9b0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"5fc8f790d6d9a90af27cb9b0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
