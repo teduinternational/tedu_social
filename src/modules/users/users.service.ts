@@ -84,7 +84,7 @@ class UserService {
             avatar: avatar,
             password: hashedPassword,
           },
-          { new: true }
+          { new: true },
         )
         .exec();
     } else {
@@ -95,7 +95,7 @@ class UserService {
             ...model,
             avatar: avatar,
           },
-          { new: true }
+          { new: true },
         )
         .exec();
     }
@@ -118,20 +118,11 @@ class UserService {
     return users;
   }
 
-  public async getAllPaging(
-    keyword: string,
-    page: number
-  ): Promise<IPagination<IUser>> {
-    const pageSize: number = Number(process.env.PAGE_SIZE || 10);
-
+  public async getAllPaging(keyword: string, page: number, pageSize: number): Promise<IPagination<IUser>> {
     let query = {};
     if (keyword) {
       query = {
-        $or: [
-          { email: keyword },
-          { first_name: keyword },
-          { last_name: keyword },
-        ],
+        $or: [{ email: keyword }, { first_name: keyword }, { last_name: keyword }],
       };
     }
 

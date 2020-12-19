@@ -16,32 +16,21 @@ export default class UsersRoute implements Route {
   }
 
   private initializeRoutes() {
-    this.router.post(
-      this.path,
-      validationMiddleware(RegisterDto, true),
-      this.usersController.register
-    );
+    this.router.post(this.path, validationMiddleware(RegisterDto, true), this.usersController.register);
 
     this.router.put(
       this.path + '/:id',
       authMiddleware,
       validationMiddleware(RegisterDto, true),
-      this.usersController.updateUser
+      this.usersController.updateUser,
     );
 
     this.router.get(this.path + '/:id', this.usersController.getUserById);
 
     this.router.get(this.path, this.usersController.getAll);
 
-    this.router.get(
-      this.path + '/paging/:page',
-      this.usersController.getAllPaging
-    );
+    this.router.get(this.path + '/paging/:page/:pageSize', this.usersController.getAllPaging);
 
-    this.router.delete(
-      this.path + '/:id',
-      authMiddleware,
-      this.usersController.deleteUser
-    );
+    this.router.delete(this.path + '/:id', authMiddleware, this.usersController.deleteUser);
   }
 }
