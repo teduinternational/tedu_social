@@ -32,5 +32,7 @@ export default class UsersRoute implements Route {
     this.router.get(this.path + '/paging/:page/:pageSize', this.usersController.getAllPaging);
 
     this.router.delete(this.path + '/:id', authMiddleware, this.usersController.deleteUser);
+
+    this.router.delete(this.path, authMiddleware, this.usersController.deleteUsers);
   }
 }
