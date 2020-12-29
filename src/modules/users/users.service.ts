@@ -34,11 +34,11 @@ class UserService {
 
     const hashedPassword = await bcryptjs.hash(model.password!, salt);
     const createdUser = await this.userSchema.create({
-      ...model,
-      password: hashedPassword,
-      avatar: avatar,
-      date: Date.now(),
-    });
+        ...model,
+        password: hashedPassword,
+        avatar: avatar,
+        date: Date.now(),
+      } as unknown as IUser);
     return this.createToken(createdUser);
   }
 
