@@ -53,9 +53,6 @@ class UserService {
     }
 
     let avatar = user.avatar;
-    if (user.email === model.email) {
-      throw new HttpException(400, 'You must using the difference email');
-    }
 
     const checkEmailExist = await this.userSchema
       .find({
@@ -84,7 +81,7 @@ class UserService {
             avatar: avatar,
             password: hashedPassword,
           },
-          { new: true }
+          { new: true },
         )
         .exec();
     } else {
@@ -95,7 +92,7 @@ class UserService {
             ...model,
             avatar: avatar,
           },
-          { new: true }
+          { new: true },
         )
         .exec();
     }
@@ -118,20 +115,13 @@ class UserService {
     return users;
   }
 
-  public async getAllPaging(
-    keyword: string,
-    page: number
-  ): Promise<IPagination<IUser>> {
+  public async getAllPaging(keyword: string, page: number): Promise<IPagination<IUser>> {
     const pageSize: number = Number(process.env.PAGE_SIZE || 10);
 
     let query = {};
     if (keyword) {
       query = {
-        $or: [
-          { email: keyword },
-          { first_name: keyword },
-          { last_name: keyword },
-        ],
+        $or: [{ email: keyword }, { first_name: keyword }, { last_name: keyword }],
       };
     }
 
