@@ -1,5 +1,4 @@
 import { DataStoredInToken } from './../auth/auth.interface';
-import { Http } from 'winston/lib/winston/transports';
 import { HttpException } from '@core/exceptions';
 import { IPagination } from '@core/interfaces';
 import IUser from './users.interface';
@@ -116,7 +115,7 @@ class UserService {
   }
 
   public async getAllPaging(keyword: string, page: number): Promise<IPagination<IUser>> {
-    const pageSize: number = Number(process.env.PAGE_SIZE || 10);
+    const pageSize = Number(process.env.PAGE_SIZE || 10);
 
     let query = {};
     if (keyword) {
@@ -147,10 +146,16 @@ class UserService {
     return deletedUser;
   }
 
+  public async deleteUsers(userIds: string[]): Promise<number | undefined> {
+    const result = await this.userSchema.deleteMany({ _id: [...userIds] }).exec();
+    if (!result.ok) throw new HttpException(409, 'Your id is invalid');
+    return result.deletedCount;
+  }
+
   private createToken(user: IUser): TokenData {
     const dataInToken: DataStoredInToken = { id: user._id };
     const secret: string = process.env.JWT_TOKEN_SECRET!;
-    const expiresIn: number = 3600;
+    const expiresIn = 3600;
     return {
       token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
     };
