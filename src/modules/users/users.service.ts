@@ -1,14 +1,15 @@
-import { DataStoredInToken } from './../auth/auth.interface';
+import { createToken, randomTokenString } from '@core/utils/helpers';
+
 import { HttpException } from '@core/exceptions';
 import { IPagination } from '@core/interfaces';
 import IUser from './users.interface';
+import { RefreshTokenSchema } from '@modules/refresh_token';
 import RegisterDto from './dtos/register.dto';
 import { TokenData } from '@modules/auth';
 import UserSchema from './users.model';
 import bcryptjs from 'bcryptjs';
 import gravatar from 'gravatar';
 import { isEmptyObject } from '@core/utils';
-import jwt from 'jsonwebtoken';
 
 class UserService {
   public userSchema = UserSchema;
@@ -23,7 +24,7 @@ class UserService {
       throw new HttpException(409, `Your email ${model.email} already exist.`);
     }
 
-    const avatar = gravatar.url(model.email!, {
+    const avatar = gravatar.url(model.email, {
       size: '200',
       rating: 'g',
       default: 'mm',
@@ -31,14 +32,17 @@ class UserService {
 
     const salt = await bcryptjs.genSalt(10);
 
-    const hashedPassword = await bcryptjs.hash(model.password!, salt);
+    const hashedPassword = await bcryptjs.hash(model.password, salt);
     const createdUser = await this.userSchema.create({
       ...model,
       password: hashedPassword,
       avatar: avatar,
       date: Date.now(),
     });
-    return this.createToken(createdUser);
+    const refreshToken = await this.generateRefreshToken(createdUser._id);
+    await refreshToken.save();
+
+    return createToken(createdUser._id, refreshToken.token);
   }
 
   public async updateUser(userId: string, model: RegisterDto): Promise<IUser> {
@@ -151,14 +155,13 @@ class UserService {
     if (!result.ok) throw new HttpException(409, 'Your id is invalid');
     return result.deletedCount;
   }
-
-  private createToken(user: IUser): TokenData {
-    const dataInToken: DataStoredInToken = { id: user._id };
-    const secret: string = process.env.JWT_TOKEN_SECRET!;
-    const expiresIn = 3600;
-    return {
-      token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
-    };
+  private async generateRefreshToken(userId: string) {
+    // create a refresh token that expires in 7 days
+    return new RefreshTokenSchema({
+      user: userId,
+      token: randomTokenString(),
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    });
   }
 }
 export default UserService;
