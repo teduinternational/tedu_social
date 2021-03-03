@@ -1,4 +1,5 @@
 import { IUser, TokenData } from '@modules/auth';
+import { Logger, isEmptyObject } from '@core/utils';
 
 import { DataStoredInToken } from '../../core/interfaces/auth.interface';
 import { HttpException } from '@core/exceptions';
@@ -6,7 +7,6 @@ import LoginDto from './auth.dto';
 import { RefreshTokenSchema } from '@modules/refresh_token';
 import { UserSchema } from '@modules/users';
 import bcryptjs from 'bcryptjs';
-import { isEmptyObject } from '@core/utils';
 import jwt from 'jsonwebtoken';
 import { randomTokenString } from '@core/utils/helpers';
 
@@ -68,7 +68,7 @@ class AuthService {
   private generateJwtToken(userId: string, refreshToken: string): TokenData {
     const dataInToken: DataStoredInToken = { id: userId };
     const secret: string = process.env.JWT_TOKEN_SECRET ?? '';
-    const expiresIn = 3600;
+    const expiresIn = 10; //in seconds
     return {
       token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
       refreshToken: refreshToken,
@@ -76,8 +76,9 @@ class AuthService {
   }
 
   private async getRefreshTokenFromDb(refreshToken: string) {
-    const token = await RefreshTokenSchema.findOne({ refreshToken }).populate('user').exec();
-    if (!token || !token.isActive) throw new HttpException(404, `Invalid token`);
+    const token = await RefreshTokenSchema.findOne({ token: refreshToken }).populate('user').exec();
+    Logger.info(token);
+    if (!token || !token.isActive) throw new HttpException(400, `Invalid refresh token`);
     return token;
   }
 
@@ -86,7 +87,7 @@ class AuthService {
     return new RefreshTokenSchema({
       user: userId,
       token: randomTokenString(),
-      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // in 7 days
     });
   }
 }

@@ -17,8 +17,12 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     req.user.id = user.id;
     next();
   } catch (error) {
-    Logger.error(`[ERROR] Msg: ${error}`);
-    res.status(401).json({ message: 'Token is not valid' });
+    Logger.error(`[ERROR] Msg: ${token}`);
+    if (error.name == 'TokenExpiredError') {
+      res.status(401).json({ message: 'Token is expired' });
+    } else {
+      res.status(401).json({ message: 'Token is not valid' });
+    }
   }
 };
 
