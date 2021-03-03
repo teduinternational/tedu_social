@@ -1,4 +1,4 @@
-import { createToken, randomTokenString } from '@core/utils/helpers';
+import { generateJwtToken, randomTokenString } from '@core/utils/helpers';
 
 import { HttpException } from '@core/exceptions';
 import { IPagination } from '@core/interfaces';
@@ -42,7 +42,7 @@ class UserService {
     const refreshToken = await this.generateRefreshToken(createdUser._id);
     await refreshToken.save();
 
-    return createToken(createdUser._id, refreshToken.token);
+    return generateJwtToken(createdUser._id, refreshToken.token);
   }
 
   public async updateUser(userId: string, model: RegisterDto): Promise<IUser> {
