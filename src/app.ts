@@ -17,7 +17,7 @@ class App {
 
   constructor(routes: Route[]) {
     this.app = express();
-    this.port = process.env.PORT || 5000;
+    this.port = process.env.PORT || 15000;
     this.production = process.env.NODE_ENV == 'production' ? true : false;
 
     this.connectToDatabase();
