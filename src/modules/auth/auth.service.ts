@@ -1,14 +1,12 @@
 import { IUser, TokenData } from '@modules/auth';
 import { Logger, isEmptyObject } from '@core/utils';
+import { generateJwtToken, randomTokenString } from '@core/utils/helpers';
 
-import { DataStoredInToken } from '../../core/interfaces/auth.interface';
 import { HttpException } from '@core/exceptions';
 import LoginDto from './auth.dto';
 import { RefreshTokenSchema } from '@modules/refresh_token';
 import { UserSchema } from '@modules/users';
 import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { randomTokenString } from '@core/utils/helpers';
 
 class AuthService {
   public userSchema = UserSchema;
@@ -26,7 +24,7 @@ class AuthService {
     if (!isMatchPassword) throw new HttpException(400, 'Credential is not valid');
 
     const refreshToken = await this.generateRefreshToken(user._id);
-    const jwtToken = this.generateJwtToken(user._id, refreshToken.token);
+    const jwtToken = generateJwtToken(user._id, refreshToken.token);
 
     // save refresh token
     await refreshToken.save();
@@ -46,7 +44,7 @@ class AuthService {
     await newRefreshToken.save();
 
     // return basic details and tokens
-    return this.generateJwtToken(user, newRefreshToken.token);
+    return generateJwtToken(user, newRefreshToken.token);
   }
 
   public async revokeToken(token: string): Promise<void> {
@@ -63,16 +61,6 @@ class AuthService {
       throw new HttpException(404, `User is not exists`);
     }
     return user;
-  }
-
-  private generateJwtToken(userId: string, refreshToken: string): TokenData {
-    const dataInToken: DataStoredInToken = { id: userId };
-    const secret: string = process.env.JWT_TOKEN_SECRET ?? '';
-    const expiresIn = 10; //in seconds
-    return {
-      token: jwt.sign(dataInToken, secret, { expiresIn: expiresIn }),
-      refreshToken: refreshToken,
-    };
   }
 
   private async getRefreshTokenFromDb(refreshToken: string) {
