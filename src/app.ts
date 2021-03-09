@@ -6,18 +6,25 @@ import { errorMiddleware } from '@core/middleware';
 import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import http from 'http';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import socketIo from 'socket.io';
 import swaggerUi from 'swagger-ui-express';
 
 class App {
-  public app: express.Application;
   public port: string | number;
   public production: boolean;
+  public app: express.Application;
+  public server: http.Server;
+  public io: socketIo.Server;
 
   constructor(routes: Route[]) {
     this.app = express();
-    this.port = process.env.PORT || 5000;
+    this.server = http.createServer(this.app);
+    this.io = new socketIo.Server(this.server);
+
+    this.port = process.env.PORT || 15000;
     this.production = process.env.NODE_ENV == 'production' ? true : false;
 
     this.connectToDatabase();
@@ -25,10 +32,26 @@ class App {
     this.initializeRoutes(routes);
     this.initializeErrorMiddleware();
     this.initializeSwagger();
+    this.initSocketIo();
   }
+  private initSocketIo() {
+    this.server = http.createServer(this.app);
+    this.io = new socketIo.Server(this.server, {
+      cors: {
+        origin: '*',
+      },
+    });
 
+    this.io.on('connection', (socket: socketIo.Socket) => {
+      Logger.warn('a user connected : ' + socket.id);
+      socket.emit('message', 'Hello ' + socket.id);
+      socket.on('disconnect', function () {
+        Logger.warn('socket disconnected : ' + socket.id);
+      });
+    });
+  }
   public listen() {
-    this.app.listen(this.port, () => {
+    this.server.listen(this.port, () => {
       Logger.info(`Server is listening on port ${this.port}`);
     });
   }
