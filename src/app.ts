@@ -41,15 +41,28 @@ class App {
         origin: '*',
       },
     });
+    this.app.set('socketio', this.io);
 
+    const users: any = {};
     this.io.on('connection', (socket: socketIo.Socket) => {
       Logger.warn('a user connected : ' + socket.id);
       socket.emit('message', 'Hello ' + socket.id);
+
+      socket.on('login', function (data) {
+        Logger.warn('a user ' + data.userId + ' connected');
+        // saving userId to object with socket ID
+        users[socket.id] = data.userId;
+      });
+
       socket.on('disconnect', function () {
+        Logger.warn('user ' + users[socket.id] + ' disconnected');
+        // remove saved socket from users object
+        delete users[socket.id];
         Logger.warn('socket disconnected : ' + socket.id);
       });
     });
   }
+
   public listen() {
     this.server.listen(this.port, () => {
       Logger.info(`Server is listening on port ${this.port}`);
