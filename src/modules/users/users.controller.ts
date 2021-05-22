@@ -43,7 +43,6 @@ export default class UsersController {
       const keyword = req.query.keyword || '';
 
       const paginationResult = await this.userService.getAllPaging(keyword.toString(), page);
-
       res.status(200).json(paginationResult);
     } catch (error) {
       next(error);
@@ -67,6 +66,16 @@ export default class UsersController {
       const result = await this.userService.deleteUser(req.params.id);
       const io = req.app.get('socketio');
       io.emit('user_deleted', `User ${result.email} has been deleted.`);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public deleteUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const ids: string[] = req.body;
+      const result = await this.userService.deleteUsers(ids);
       res.status(200).json(result);
     } catch (error) {
       next(error);
