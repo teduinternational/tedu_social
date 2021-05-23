@@ -79,8 +79,8 @@ class App {
 
   private initializeMiddleware() {
     if (this.production) {
-      this.app.use(hpp());
-      this.app.use(helmet());
+      // this.app.use(hpp());
+      // this.app.use(helmet());
       this.app.use(morgan('combined'));
       this.app.use(cors({ origin: 'social-admin-prod.herokuapp.com', credentials: true }));
     } else {
