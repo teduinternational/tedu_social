@@ -1,3 +1,4 @@
+import HerokuLogger from 'heroku-logger';
 import { Logger } from '@core/utils';
 import { Route } from '@core/interfaces';
 import YAML from 'yamljs';
@@ -66,6 +67,7 @@ class App {
   public listen() {
     this.server.listen(this.port, () => {
       Logger.info(`Server is listening on port ${this.port}`);
+      HerokuLogger.info(`Server is listening on port ${this.port}`);
     });
   }
 
@@ -96,6 +98,7 @@ class App {
     const connectString = process.env.MONGODB_URI;
     if (!connectString) {
       Logger.error('Connection string is invalid');
+      HerokuLogger.error(`Connection string is invalid`);
       return;
     }
     mongoose
@@ -109,6 +112,7 @@ class App {
         Logger.error(reason);
       });
     Logger.info('Database connected...');
+    HerokuLogger.info(`Database connected...`);
   }
 
   private initializeSwagger() {
